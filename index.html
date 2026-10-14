@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS3 & Responsive Architecture Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">Architecture<span>Canvas</span></div>
+        <nav class="nav-menu" aria-label="Primary Navigation">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#portfolio" class="nav-link">Showcase</a>
+            <a href="#about" class="nav-link">About</a>
+        </nav>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme mode">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </header>
+
+    <main class="content-wrapper">
+        <section id="home" class="hero-section">
+            <span class="badge">CSS3 Responsive System</span>
+            <h1>Semantic & Fluid Layout Designs</h1>
+            <p>A production-ready presentation showcase exploring pixel-perfect layout mechanics, multi-dimensional grid structures, and localized component control rules.</p>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="section-header">
+                <h2>Project Architectural Showcase</h2>
+                <p>Inspecting specialized UI layout paradigms across mobile, tablet, and wide desktop viewport layers.</p>
+            </div>
+
+            <div class="grid-container">
+                <article class="grid-card">
+                    <div class="card-badge">Grid Standard</div>
+                    <div class="card-content">
+                        <h3>01 / 2D CSS Grid Layouts</h3>
+                        <p>Utilizing structural CSS Grid matrices for complex, multi-axis element alignments without nested content wrappers.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tech-tag">CSS Grid</span>
+                        <span class="tech-tag">2-Dimensional</span>
+                    </div>
+                </article>
+
+                <article class="grid-card">
+                    <div class="card-badge">Flexbox Component</div>
+                    <div class="card-content">
+                        <h3>02 / Localized Component Control</h3>
+                        <p>Employing Flexbox architectures safely inside localized UI layout units to guarantee predictable micro-element behaviors.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tech-tag">Flexbox</span>
+                        <span class="tech-tag">Micro-UI</span>
+                    </div>
+                </article>
+
+                <article class="grid-card">
+                    <div class="card-badge">Fluid Fluidity</div>
+                    <div class="card-content">
+                        <h3>03 / Mobile-First Queries</h3>
+                        <p>Implementing a strict layout scaling process up from compact smartphones to high-resolution desktop viewports seamlessly.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tech-tag">Media Queries</span>
+                        <span class="tech-tag">Mobile-First</span>
+                    </div>
+                </article>
+
+                <article class="grid-card">
+                    <div class="card-badge">Theme Controls</div>
+                    <div class="card-content">
+                        <h3>04 / Custom Engine Variables</h3>
+                        <p>Leveraging dynamic CSS root tokens to control contrast layers, visual tokens, and instant palette shifts cleanly.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tech-tag">CSS Variables</span>
+                        <span class="tech-tag">Dynamic Themes</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Advanced CSS3 & Responsive Architecture. Prepared for academic evaluation.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const root = document.documentElement;
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+
+            toggleBtn.addEventListener('click', () => {
+                const currentTheme = root.getAttribute('data-theme');
+                root.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>

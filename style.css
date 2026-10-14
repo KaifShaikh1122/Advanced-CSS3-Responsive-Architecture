@@ -1,0 +1,283 @@
+/* -------------------------------------------------------------
+   1. ROOT VARIABLES (Color Architecture & Transition Settings)
+------------------------------------------------------------- */
+:root[data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-element: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --display-sun: block;
+    --display-moon: none;
+}
+
+:root[data-theme="dark"] {
+    --bg-main: #0b0f19;
+    --bg-surface: #131c2e;
+    --bg-element: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-light: #1e3a8a;
+    --border: #223047;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --display-sun: none;
+    --display-moon: block;
+}
+
+/* Global Transitions System Token */
+:root {
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-snappy: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------
+   2. GLOBAL LAYOUT RESETS
+------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* -------------------------------------------------------------
+   3. FLEXBOX COMPONENT ALIGNMENT (With Dynamic Actions)
+------------------------------------------------------------- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.logo {
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+.logo span { color: var(--accent); }
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    position: relative;
+    transition: color var(--transition-snappy);
+}
+.nav-link:hover { color: var(--accent); }
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width var(--transition-snappy);
+}
+.nav-link:hover::after { width: 100%; }
+
+.theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: var(--bg-element);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    transition: transform var(--transition-snappy), background-color var(--transition-smooth);
+}
+.theme-btn:hover { transform: scale(1.1) rotate(15deg); }
+.theme-btn .icon-sun { display: var(--display-sun); }
+.theme-btn .icon-moon { display: var(--display-moon); }
+
+/* -------------------------------------------------------------
+   4. TWO-DIMENSIONAL CSS GRID MODULE & ADVANCED ANIMATIONS
+------------------------------------------------------------- */
+.content-wrapper {
+    padding: 2.5rem 1.25rem;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    background-color: var(--accent-light);
+    color: var(--accent);
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+.hero-section h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+/* Mobile Stacking Matrix Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.grid-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    will-change: transform, box-shadow;
+    transition: 
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        border-color var(--transition-smooth),
+        background-color var(--transition-smooth);
+}
+
+.grid-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--accent);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-badge {
+    align-self: flex-start;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background-color: var(--bg-element);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+    transition: background-color var(--transition-smooth);
+}
+
+.card-footer {
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background-color: var(--bg-element);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    transition: transform var(--transition-snappy), background-color var(--transition-smooth);
+}
+.grid-card:hover .tech-tag {
+    transform: scale(1.03);
+}
+
+/* -------------------------------------------------------------
+   5. CSS KEYFRAMES ENGINE (Staggered Animation Matrices)
+------------------------------------------------------------- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-down {
+    animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-card {
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Computes microsecond sequence scaling based on inline variables */
+    animation-delay: calc(var(--stagger-index) * 0.12s);
+}
+
+/* Accessibility overrides for reduced motion rules */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+        transform: none !important;
+    }
+}
+
+/* -------------------------------------------------------------
+   6. RESPONSIVE LAYER BREAKPOINTS
+------------------------------------------------------------- */
+@media (min-width: 640px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .hero-section h1 { font-size: 3rem; }
+}
+
+@media (min-width: 1024px) {
+    .grid-container { grid-template-columns: repeat(4, 1fr); }
+}
+
+.main-footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background-color: var(--bg-surface);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--border);
+    margin-top: 6rem;
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
